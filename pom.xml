@@ -13,7 +13,7 @@
     <description>Spring Boot application for Prosper LLC</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
     </properties>
 
     <dependencies>
@@ -21,18 +21,21 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.6.3</version>  <!-- Add the version -->
         </dependency>
 
         <!-- Spring Boot Data MongoDB Dependency for MongoDB integration -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
+            <version>2.6.3</version>  <!-- Add the version -->
         </dependency>
 
         <!-- Spring Boot DevTools for easier development (optional) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
+            <version>2.6.3</version>  <!-- Add the version -->
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
@@ -41,6 +44,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <version>2.6.3</version>  <!-- Add the version -->
             <scope>test</scope>
         </dependency>
 
@@ -48,6 +52,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.18.22</version>  <!-- Add the version -->
             <scope>provided</scope>
         </dependency>
 
@@ -55,13 +60,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
+            <version>2.6.3</version>  <!-- Add the version -->
         </dependency>
 
-        <!-- MongoDB Atlas Authentication (Optional, if required for secure connections) -->
+        <!-- MongoDB Java Driver (for secure connections, optional) -->
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
-            <version>4.3.3</version>
+            <version>4.3.3</version> <!-- Add the version -->
         </dependency>
 
     </dependencies>
@@ -72,13 +78,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.6.3</version>  <!-- Add the version -->
             </plugin>
 
             <!-- Docker Maven Plugin to build Docker images -->
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>1.2.0</version>
+                <version>1.2.0</version>  <!-- Add the version -->
                 <configuration>
                     <imageName>prosper-llc-backend</imageName>
                     <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
