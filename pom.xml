@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion> <!-- This should be the first element -->
+    <modelVersion>4.0.0</modelVersion>
 
     <!-- Project identification -->
     <groupId>com.prosperllc</groupId>
@@ -22,28 +22,28 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>2.6.3</version> <!-- Add the version -->
+            <version>2.6.3</version>
         </dependency>
 
         <!-- Spring Boot Data MongoDB Dependency for MongoDB integration -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
-            <version>2.6.3</version> <!-- Add the version -->
+            <version>2.6.3</version>
         </dependency>
 
         <!-- MongoDB Driver Sync (latest version) -->
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongodb-driver-sync</artifactId>
-            <version>4.6.0</version> <!-- Latest stable version -->
+            <version>4.6.0</version>
         </dependency>
 
         <!-- Spring Boot DevTools for easier development (optional) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-            <version>2.6.3</version> <!-- Add the version -->
+            <version>2.6.3</version>
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
@@ -52,7 +52,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <version>2.6.3</version> <!-- Add the version -->
+            <version>2.6.3</version>
             <scope>test</scope>
         </dependency>
 
@@ -60,7 +60,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.22</version> <!-- Add the version -->
+            <version>1.18.22</version>
             <scope>provided</scope>
         </dependency>
 
@@ -68,19 +68,31 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
-            <version>2.6.3</version> <!-- Add the version -->
+            <version>2.6.3</version>
         </dependency>
 
     </dependencies>
 
     <build>
         <plugins>
+            <!-- Maven Compiler Plugin to specify source and target versions -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>17</source> <!-- Update to Java 17 -->
+                    <target>17</target> <!-- Update to Java 17 -->
+                </configuration>
+            </plugin>
+
             <!-- Spring Boot Maven Plugin for creating the executable jar -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.6.3</version> <!-- Add the version -->
+                <version>2.6.3</version>
             </plugin>
         </plugins>
     </build>
+
 </project>
