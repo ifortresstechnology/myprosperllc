@@ -39,16 +39,4 @@ RUN apt-get update && apt-get install -y nginx supervisor
 WORKDIR /app
 
 # Copy the Spring Boot jar file from the build stage
-COPY --from=build /app/target/*.jar /app/app.jar
-
-# Copy frontend static files to Nginx's default static directory
-COPY --from=frontend-build /frontend /usr/share/nginx/html
-
-# Copy the supervisord configuration file
-COPY supervisord.conf /etc/supervisord.conf
-
-# Expose both the Spring Boot backend port (8080) and Nginx port (80)
-EXPOSE 8080 80
-
-# Start supervisord to manage both Nginx and Spring Boot application
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+C
