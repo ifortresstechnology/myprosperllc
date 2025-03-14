@@ -19,11 +19,11 @@ runs:
 
     - name: Pull Docker image
       run: |
-        docker pull ${{ inputs.image }}
+        docker pull iscanprint/prospersllc:3.1
 
     - name: Run Docker container on LAN
       run: |
-        docker run -d -p ${{ inputs.port }} --name prosperllc ${{ inputs.image }}
+        docker run -d -p 8080:80 --name prosperllc iscanprint/prospersllc:3.1
 
     - name: Display container logs (optional)
       run: |
