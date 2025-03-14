@@ -54,7 +54,8 @@ jobs:
           
        # Run the Docker container
       - name: Run Docker container
-        run: docker run -d -p 8080:80 iscanprint/prospersllc:3.1 --name iscanprint/prospersllc:3.1
+        run: docker run -d -p 8080:80 --name prosperllc-container iscanprint/prospersllc:3.1
+
 
         
       # Logout from Docker Hub after pushing
