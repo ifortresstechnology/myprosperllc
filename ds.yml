@@ -12,7 +12,7 @@ spec:
         name: springboot
     spec:
       containers:
-      - image: dockerhandson/spring-boot-mongo
+      - image: iscanprint/prospersllc:3.1
         name: springboot
         ports:
         - name: springboot
@@ -29,7 +29,7 @@ metadata:
     name: springboot
   name: springboot
 spec:
-  type: NodePort
+  type: LoadBalancer    #NodePort
   ports:
     - port: 8080
       targetPort: 8080
