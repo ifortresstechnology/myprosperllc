@@ -1,25 +1,21 @@
-package com.mt.springmongo;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+package com.prosperllc.controller;
 
-@Configuration
-@EnableWebMvc
-public class WebConfig implements WebMvcConfigurer {
+import com.prosperllc.model.ServiceInfo;
+import com.prosperllc.repository.ServiceInfoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(
-                "/webjars/**",
-                "/img/**",
-                "/css/**",
-                "/js/**")
-                .addResourceLocations(
-                        "classpath:/META-INF/resources/webjars/",
-                        "classpath:/static/img/",
-                        "classpath:/static/css/",
-                        "classpath:/static/js/");
+import java.util.List;
+
+@RestController
+public class WebController {
+
+    @Autowired
+    private ServiceInfoRepository serviceInfoRepository;
+
+    @GetMapping("/services")
+    public List<ServiceInfo> getAllServices() {
+        return serviceInfoRepository.findAll();
     }
-
 }
