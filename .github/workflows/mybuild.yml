@@ -51,7 +51,12 @@ jobs:
       - name: Push Docker Image
         run: |
           docker push iscanprint/prospersllc:3.1
+          
+       # Run the Docker container
+      - name: Run Docker container
+        run: docker run -d -p 8080:80 iscanprint/prospersllc:3.1 --name iscanprint/prospersllc:3.1
 
+        
       # Logout from Docker Hub after pushing
       - name: Logout from Docker Hub
         run: docker logout
