@@ -1,61 +1,86 @@
-<dependencies>
-    <!-- Spring Boot Web Dependency for REST API and Controllers -->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-        <version>2.6.3</version> <!-- Add the version -->
-    </dependency>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion> <!-- This should be the first element -->
 
-    <!-- Spring Boot Data MongoDB Dependency for MongoDB integration -->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        <version>2.6.3</version> <!-- Add the version -->
-    </dependency>
+    <!-- Project identification -->
+    <groupId>com.prosperllc</groupId>
+    <artifactId>prosper-llc</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-    <!-- MongoDB Driver Sync (latest version) -->
-    <dependency>
-        <groupId>org.mongodb</groupId>
-        <artifactId>mongodb-driver-sync</artifactId>
-        <version>4.6.0</version> <!-- Latest stable version -->
-    </dependency>
+    <name>Prosper LLC</name>
+    <description>Spring Boot application for Prosper LLC</description>
 
-    <!-- Spring Boot DevTools for easier development (optional) -->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-devtools</artifactId>
-        <version>2.6.3</version> <!-- Add the version -->
-        <scope>runtime</scope>
-        <optional>true</optional>
-    </dependency>
+    <properties>
+        <java.version>17</java.version>
+    </properties>
 
-    <!-- Spring Boot Starter Test for unit and integration tests -->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-test</artifactId>
-        <version>2.6.3</version> <!-- Add the version -->
-        <scope>test</scope>
-    </dependency>
+    <dependencies>
+        <!-- Spring Boot Web Dependency for REST API and Controllers -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.6.3</version> <!-- Add the version -->
+        </dependency>
 
-    <!-- Lombok for reducing boilerplate code (optional) -->
-    <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>1.18.22</version> <!-- Add the version -->
-        <scope>provided</scope>
-    </dependency>
+        <!-- Spring Boot Data MongoDB Dependency for MongoDB integration -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+            <version>2.6.3</version> <!-- Add the version -->
+        </dependency>
 
-    <!-- Spring Boot starter for logging -->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-logging</artifactId>
-        <version>2.6.3</version> <!-- Add the version -->
-    </dependency>
+        <!-- MongoDB Driver Sync (latest version) -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
+            <version>4.6.0</version> <!-- Latest stable version -->
+        </dependency>
 
-    <!-- Spring Boot Maven Plugin for building the jar -->
-    <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>2.6.3</version> <!-- Add the version -->
-    </plugin>
-</dependencies>
+        <!-- Spring Boot DevTools for easier development (optional) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <version>2.6.3</version> <!-- Add the version -->
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Spring Boot Starter Test for unit and integration tests -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>2.6.3</version> <!-- Add the version -->
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Lombok for reducing boilerplate code (optional) -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version> <!-- Add the version -->
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Spring Boot starter for logging -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+            <version>2.6.3</version> <!-- Add the version -->
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Spring Boot Maven Plugin for creating the executable jar -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.6.3</version> <!-- Add the version -->
+            </plugin>
+        </plugins>
+    </build>
+</project>
