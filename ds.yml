@@ -2,8 +2,8 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   labels:
-    name: springboot
-  name: spring-controller
+    name: prospersllc
+  name: prospers-controller
 spec:
   replicas: 1
   template:
@@ -19,7 +19,8 @@ spec:
           containerPort: 8080
         env:
         - name: SPRING_DATA_MONGODB_URI
-          value: "mongodb+srv://<username>:<password>@<cluster-url>/<database-name>?retryWrites=true&w=majority" # Update with your cloud MongoDB URI      
+          value: "mongodb+srv://denifer:admin123@mongodb-demo.p1jch.mongodb.net/prospers_llc?retryWrites=true&w=majority&appName=mongodb-demo
+" # Update with your cloud MongoDB URI      
 ---
 # Node Port Service for Spring Boot
 apiVersion: v1
