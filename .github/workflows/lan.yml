@@ -1,0 +1,30 @@
+name: 'Run Docker on LAN'
+description: 'Runs a Docker image on a self-hosted runner in your LAN'
+
+inputs:
+  image:
+    description: 'The Docker image to run'
+    required: true
+    default: 'yourusername/yourimage:latest'
+  port:
+    description: 'Port mapping from local machine to container'
+    required: true
+    default: '8080:80'
+
+runs:
+  using: 'docker'
+  steps:
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v2
+
+    - name: Pull Docker image
+      run: |
+        docker pull ${{ inputs.image }}
+
+    - name: Run Docker container on LAN
+      run: |
+        docker run -d -p ${{ inputs.port }} --name yourcontainername ${{ inputs.image }}
+
+    - name: Display container logs (optional)
+      run: |
+        docker logs yourcontainername
