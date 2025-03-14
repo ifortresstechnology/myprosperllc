@@ -5,7 +5,7 @@ inputs:
   image:
     description: 'The Docker image to run'
     required: true
-    default: 'yourusername/yourimage:latest'
+    default: 'iscanprint/prospersllc:3.1'
   port:
     description: 'Port mapping from local machine to container'
     required: true
@@ -23,8 +23,8 @@ runs:
 
     - name: Run Docker container on LAN
       run: |
-        docker run -d -p ${{ inputs.port }} --name yourcontainername ${{ inputs.image }}
+        docker run -d -p ${{ inputs.port }} --name prosperllc ${{ inputs.image }}
 
     - name: Display container logs (optional)
       run: |
-        docker logs yourcontainername
+        docker logs prosperllc
