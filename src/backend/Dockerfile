@@ -1,32 +1,51 @@
-# Use a base image with Java
-FROM openjdk:11-jdk-slim AS build
+# Stage 1: Build the Spring Boot Application (Backend)
+FROM maven:3.8.1-openjdk-17 AS build
 
-# Set the working directory for the backend (Spring Boot)
+# Set the working directory for the build process
 WORKDIR /app
 
-# Copy the jar file from the build context to the container (Spring Boot)
-COPY target/prosper-llc.jar /app/prosper-llc.jar
+# Copy the pom.xml file and fetch dependencies
+COPY pom.xml .
 
-# Use Nginx for the frontend (this will be combined into one container)
-FROM nginx:alpine
+# Download dependencies (this step is cached if there are no changes to pom.xml)
+RUN mvn dependency:go-offline
 
-# Install supervisord to manage both Spring Boot and Nginx
-RUN apk update && apk add --no-cache supervisor
+# Copy the source code
+COPY src ./src
 
-# Create a directory for the Spring Boot application logs and configurations
-RUN mkdir -p /var/log/springboot
+# Package the application (skip tests for quicker builds)
+RUN mvn clean package -DskipTests
 
-# Copy the Spring Boot application (JAR) from the first build stage to the container
-COPY --from=build /app/prosper-llc.jar /app/prosper-llc.jar
+# Stage 2: Build the Frontend with Nginx (Frontend)
+FROM node:16-alpine AS frontend-build
 
-# Copy the frontend build into the Nginx directory
-COPY ./frontend /usr/share/nginx/html
+# Set the working directory for the frontend build
+WORKDIR /frontend
 
-# Copy the supervisord config file
-COPY supervisord.conf /etc/supervisord.conf
+# Copy the frontend source code
+COPY src/main/resources/static ./frontend
 
-# Expose both ports (Nginx port 80 and Spring Boot port 8080)
-EXPOSE 80 8080
+# Install necessary dependencies and build the static files (if you need to compile them)
+# RUN npm install (Uncomment if you need to use npm/yarn for JS packages)
+# RUN npm run build (Uncomment if you need to run a build command)
 
-# Command to start supervisord, which will run both Spring Boot and Nginx
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+# Stage 3: Serve the Application using Nginx and Spring Boot (Final Image)
+FROM openjdk:17-jdk-slim
+
+# Install Nginx
+RUN apt-get update && apt-get install -y nginx
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the Spring Boot jar file from the build stage
+COPY --from=build /app/target/*.jar app.jar
+
+# Copy frontend static files to Nginx's default static directory
+COPY --from=frontend-build /frontend /usr/share/nginx/html
+
+# Expose both the Spring Boot backend port (8080) and Nginx port (80)
+EXPOSE 8080 80
+
+# Start both Nginx and the Spring Boot application in the same container
+CMD service nginx start && java -jar /app/app.jar
