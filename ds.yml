@@ -11,7 +11,44 @@ spec:
       labels:
         name: springboot
     spec:
+      containers:apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: prospersllc
+  name: prospers-controller
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: prospersllc   # Adjusting label to match the Service selector
+    spec:
       containers:
+      - image: iscanprint/prospersllc:3.1
+        name: springboot
+        ports:
+        - name: springboot
+          containerPort: 8080
+        env:
+        - name: SPRING_DATA_MONGODB_URI
+          value: "mongodb+srv://denifer:admin123@mongodb-demo.p1jch.mongodb.net/prospers_llc?retryWrites=true&w=majority&appName=mongodb-demo" # Corrected URI format      
+---
+# LoadBalancer Service for Spring Boot
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: prospersllc   # Changed label to match ReplicationController
+  name: prospersllc
+spec:
+  type: LoadBalancer   # LoadBalancer for cloud environments
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    name: prospersllc   # Ensure this selector matches the label in the ReplicationController
+
       - image: iscanprint/prospersllc:3.1
         name: springboot
         ports:
