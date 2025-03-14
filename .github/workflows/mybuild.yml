@@ -45,12 +45,12 @@ jobs:
       # Build Docker image with dynamic tag using Git commit SHA
       - name: Build Docker Image
         run: |
-          docker build -t iscanprint/prospersllc:3.0 .
+          docker build -t iscanprint/prospersllc:3.1 .
 
       # Push Docker image to Docker Hub
       - name: Push Docker Image
         run: |
-          docker push iscanprint/prospersllc:3.0
+          docker push iscanprint/prospersllc:3.1
 
       # Logout from Docker Hub after pushing
       - name: Logout from Docker Hub
